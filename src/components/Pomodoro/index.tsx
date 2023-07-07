@@ -1,13 +1,38 @@
 'use client'
-import { Play } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { useContext } from 'react'
+import { CyclesContext } from '@/contexts/CyclesContext'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
+import { FormProvider, useForm } from 'react-hook-form'
+
+import { NewCyleForm } from './NewCycleForm'
+import { Countdown } from './Countdown'
+
+import { Pause, Play } from 'lucide-react'
+
+const newCycleFormValidationSchema = zod.object({
+  task: zod.string().min(1, 'Informe a sua tarefa!'),
+  minutesAmount: zod
+    .number()
+    .min(5, 'O ciclo precisa ser de no mínimo 5 min.')
+    .max(25, 'O ciclo precisa ser de no máximo 25 min.'),
+})
+
+type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
 export default function Pomodoro() {
-  const { register, handleSubmit, watch } = useForm()
+  const { createCyclePomodoro, interruptCurrentCycle, activeCycle } =
+    useContext(CyclesContext)
 
-  function handleCreateCiclePomodoro(data: any) {
-    console.log(data)
-  }
+  const newCycleForm = useForm<NewCycleFormData>({
+    resolver: zodResolver(newCycleFormValidationSchema),
+    defaultValues: {
+      task: '',
+      minutesAmount: 0,
+    },
+  })
+
+  const { handleSubmit, watch /* reset */ } = newCycleForm
 
   const task = watch('task')
   const isSubmitDisabled = !task
@@ -15,58 +40,34 @@ export default function Pomodoro() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center">
       <form
-        onSubmit={handleSubmit(handleCreateCiclePomodoro)}
+        onSubmit={handleSubmit(createCyclePomodoro)}
         action=""
         className="flex flex-col items-center gap-14"
       >
-        <div className="w-full flex items-center justify-center gap-2 text-gray-400 text-lg font-bold flex-wrap">
-          <label htmlFor="task">Vou trabalhar em</label>
-          <input
-            id="task"
-            list="task-suggestions"
-            placeholder="Nome do seu projeto"
-            className="appearance-none bg-transparent h-5 border-0 border-b-2 border-indigo-200 font-bold text-lg p-2 text-gray-700 flex-1 focus:shadow-none focus:border-green-400"
-            {...register('task')}
-          />
+        <FormProvider {...newCycleForm}>
+          <NewCyleForm />
+        </FormProvider>
+        <Countdown />
 
-          <datalist id="task-suggestions">
-            <option value="Projeto 1" />
-            <option value="Estudos" />
-          </datalist>
-
-          <label htmlFor="minutesAmount">durante</label>
-          <input
-            type="number"
-            id="minutesAmount"
-            className="bg-transparent h-5 border-0 border-b-2 border-indigo-200 font-bold text-lg p-2 text-gray-700 w-16 focus:shadow-none focus:border-green-400"
-            placeholder="00"
-            step={5}
-            min={5}
-            max={25}
-            {...register('minutesAmount', { valueAsNumber: true })}
-          />
-
-          <span>minutos.</span>
-        </div>
-
-        <div className="font-sans text-9xl leading-[8rem] text-gray-300 flex gap-4">
-          <span className="bg-gray-700 px-8 rounded-lg">0</span>
-          <span className="bg-gray-700 px-8 rounded-lg">0</span>
-          <span className="px-8 text-green-600 w-16 overflow-hidden flex justify-center">
-            :
-          </span>
-          <span className="bg-gray-700 px-8 rounded-lg">0</span>
-          <span className="bg-gray-700 px-8 rounded-lg">0</span>
-        </div>
-
-        <button
-          type="submit"
-          disabled={isSubmitDisabled}
-          className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-green-700 text-gray-200 hover:bg-green-800 disabled:opacity-70 disabled:cursor-not-allowed"
-        >
-          Começar
-          <Play size={25} />
-        </button>
+        {activeCycle ? (
+          <button
+            type="button"
+            onClick={interruptCurrentCycle}
+            className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-red-600 text-gray-200 hover:bg-red-700 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            Interromper
+            <Pause size={25} />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            disabled={isSubmitDisabled}
+            className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-green-700 text-gray-200 hover:bg-green-800 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            Começar
+            <Play size={25} />
+          </button>
+        )}
       </form>
     </div>
   )

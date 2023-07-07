@@ -1,4 +1,8 @@
+import { CyclesContext } from '@/contexts/CyclesContext'
+import { useContext } from 'react'
+
 export default function Hitory() {
+  const { cycles } = useContext(CyclesContext)
   return (
     <main className="flex-1 p-14 flex flex-col">
       <h1 className="text-2xl text-zinc-200">Histórico dos meus ciclos</h1>

@@ -7,6 +7,7 @@ import {
 } from 'next/font/google'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/footer'
+import { CyclesContextProvider } from '@/contexts/CyclesContext'
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 const baiJamjuree = BaiJamjuree({
@@ -31,9 +32,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${roboto.variable} ${baiJamjuree.variable} ${poppins.variable} bg-background font-sans`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <CyclesContextProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CyclesContextProvider>
       </body>
     </html>
   )
