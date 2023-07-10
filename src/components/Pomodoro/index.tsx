@@ -32,7 +32,12 @@ export default function Pomodoro() {
     },
   })
 
-  const { handleSubmit, watch /* reset */ } = newCycleForm
+  const { handleSubmit, watch, reset } = newCycleForm
+
+  function handleCreateNewCycle(data: NewCycleFormData) {
+    createCyclePomodoro(data)
+    reset()
+  }
 
   const task = watch('task')
   const isSubmitDisabled = !task
@@ -40,7 +45,7 @@ export default function Pomodoro() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center">
       <form
-        onSubmit={handleSubmit(createCyclePomodoro)}
+        onSubmit={handleSubmit(handleCreateNewCycle)}
         action=""
         className="flex flex-col items-center gap-14"
       >

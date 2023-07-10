@@ -1,5 +1,8 @@
+'use client'
 import { CyclesContext } from '@/contexts/CyclesContext'
 import { useContext } from 'react'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 export default function Hitory() {
   const { cycles } = useContext(CyclesContext)
@@ -26,48 +29,27 @@ export default function Hitory() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6 w-1/2 pl-6">
-                Tarefa
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6">
-                20 minutos
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6">
-                há 2 meses
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6 pr-6">
-                Concluído
-              </td>
-            </tr>
-            <tr>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6 w-1/2 pl-6">
-                Tarefa
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6">
-                20 minutos
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6">
-                há 2 meses
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6 pr-6">
-                Concluído
-              </td>
-            </tr>
-            <tr>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6 w-1/2 pl-6">
-                Tarefa
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6">
-                20 minutos
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6">
-                há 2 meses
-              </td>
-              <td className="bg-gray-400 border-solid border-4 border-gray-700 p-4 text-sm leading-6 pr-6">
-                Concluído
-              </td>
-            </tr>
+            {cycles.map((cycle) => {
+              return (
+                <tr key={cycle.id}>
+                  <td>{cycle.task}</td>
+                  <td>{cycle.minutesAmount} minutos</td>
+                  <td>
+                    {formatDistanceToNow(new Date(cycle.startDate), {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })}
+                  </td>
+                  <td>
+                    {cycle.finishedDate && <div>Concluído</div>}
+                    {cycle.interruptedDate && <div>Interrompido</div>}
+                    {!cycle.finishedDate && !cycle.interruptedDate && (
+                      <div>Em andamento</div>
+                    )}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
