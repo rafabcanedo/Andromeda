@@ -6,26 +6,22 @@ export function Footer() {
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 items-center justify-between">
           <div className="flex space-x-6 items-center justify-center text-white">
-            <a
-              className="hover:text-primary font-pop"
-              href="https://www.instagram.com/eusoujorgeandrade/"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              className="text-black hover:text-indigo-900 font-pop"
+              href="/"
             >
               Home
-            </a>
+            </Link>
 
-            <a
-              className="hover:text-primary font-pop"
-              href="https://api.whatsapp.com/send?phone=5514997782272&text="
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              className="text-black hover:text-indigo-900 font-pop"
+              href="/pomodoro"
             >
-              Sobre Nós
-            </a>
+              Pomodoro
+            </Link>
           </div>
 
-          <span className="text-white font-pop">
+          <span className="text-black font-pop">
             &copy; {new Date().getFullYear()} Andrômeda. All rights reserved.
           </span>
 

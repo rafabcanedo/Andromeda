@@ -13,9 +13,10 @@ module.exports = {
         pop: 'var(--font-poppins)',
       },
       colors: {
-        background: '#5c5470',
+        background: '#f8f8f8', // #5c5470 => color default
         primary: '#352f44',
         form: '#eaeaea',
+        pomodoro: '#453953',
       },
     },
   },

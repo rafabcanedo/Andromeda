@@ -14,7 +14,7 @@ export function FormPix() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col items-center justify-center">
       <div>
         <label className="mb-2 text-sm text-zinc-400">Minha chave Pix</label>
         <div className="flex flex-row items-center gap-2">

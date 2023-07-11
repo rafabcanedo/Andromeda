@@ -12,7 +12,9 @@ export function Navbar() {
     <div className="w-full px-5 shadow-md h-20">
       <div className="items-center justify-between px-7 md:flex md:px-10">
         <div className="flex items-center">
-          <Image src={Logo} alt="Logo MidnightClub" width={55} height={55} />
+          <Link href="/">
+            <Image src={Logo} alt="Logo MidnightClub" width={55} height={55} />
+          </Link>
         </div>
 
         <div

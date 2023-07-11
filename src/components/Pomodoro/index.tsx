@@ -43,7 +43,7 @@ export default function Pomodoro() {
   const isSubmitDisabled = !task
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center">
+    <div className="flex-1 flex flex-col bg-pomodoro items-center justify-center min-h-screen">
       <form
         onSubmit={handleSubmit(handleCreateNewCycle)}
         action=""
