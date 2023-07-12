@@ -65,13 +65,13 @@ export function Countdown() {
 
   return (
     <div className="font-sans text-9xl leading-[8rem] text-gray-300 flex gap-4">
-      <span className="bg-gray-700 px-8 rounded-lg">{minutes[0]}</span>
-      <span className="bg-gray-700 px-8 rounded-lg">{minutes[1]}</span>
-      <span className="px-8 text-green-600 w-16 overflow-hidden flex justify-center">
+      <span className="bg-primary px-8 rounded-lg">{minutes[0]}</span>
+      <span className="bg-primary px-8 rounded-lg">{minutes[1]}</span>
+      <span className="px-8 text-[#413954] w-16 overflow-hidden flex justify-center">
         :
       </span>
-      <span className="bg-gray-700 px-8 rounded-lg">{seconds[0]}</span>
-      <span className="bg-gray-700 px-8 rounded-lg">{seconds[1]}</span>
+      <span className="bg-primary px-8 rounded-lg">{seconds[0]}</span>
+      <span className="bg-primary px-8 rounded-lg">{seconds[1]}</span>
     </div>
   )
 }

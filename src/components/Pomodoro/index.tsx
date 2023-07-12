@@ -43,7 +43,7 @@ export default function Pomodoro() {
   const isSubmitDisabled = !task
 
   return (
-    <div className="flex-1 flex flex-col bg-pomodoro items-center justify-center min-h-screen">
+    <div className="flex-1 flex flex-col bg-background items-center justify-center min-h-screen">
       <form
         onSubmit={handleSubmit(handleCreateNewCycle)}
         action=""
@@ -67,7 +67,7 @@ export default function Pomodoro() {
           <button
             type="submit"
             disabled={isSubmitDisabled}
-            className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-green-700 text-gray-200 hover:bg-green-800 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-primary text-gray-200 hover:bg-[#413954] disabled:opacity-70 disabled:cursor-not-allowed"
           >
             Começar
             <Play size={25} />

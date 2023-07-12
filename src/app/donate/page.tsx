@@ -45,12 +45,12 @@ export default function Donate() {
               <Dialog.Portal>
                 <Dialog.Overlay className="w-screen h-screen bg-black/80 fixed inset-0" />
 
-                <Dialog.Content className="absolute p-10 bg-primary rounded-2xl w-full max-w-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <Dialog.Close className="absolute right-6 top-6 text-zinc-400 hover:text-zinc-200">
+                <Dialog.Content className="absolute p-10 bg-[#e8e2db] rounded-2xl w-full max-w-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <Dialog.Close className="absolute right-6 top-6 text-primary hover:text-zinc-600">
                     <X size={24} arial-label="Fechar" />
                   </Dialog.Close>
 
-                  <Dialog.Title className="text-3xl leading-tight text-slate-300">
+                  <Dialog.Title className="text-3xl leading-tight text-primary">
                     Minha chave Pix
                   </Dialog.Title>
 

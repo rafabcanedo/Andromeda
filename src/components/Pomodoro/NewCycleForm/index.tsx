@@ -14,7 +14,7 @@ export function NewCyleForm() {
         list="task-suggestions"
         placeholder="Nome do seu projeto"
         disabled={!!activeCycle}
-        className="appearance-none bg-transparent h-5 border-0 border-b-2 border-indigo-200 font-bold text-lg p-2 text-gray-700 flex-1 focus:shadow-none focus:border-green-400"
+        className="appearance-none bg-transparent h-5 border-0 border-b-2 border-primary font-bold text-lg p-2 text-gray-700 flex-1 focus:shadow-none focus:outline-none focus:border-zinc-700"
         {...register('task')}
       />
 
@@ -27,7 +27,7 @@ export function NewCyleForm() {
       <input
         type="number"
         id="minutesAmount"
-        className="bg-transparent h-5 border-0 border-b-2 border-indigo-200 font-bold text-lg p-2 text-gray-700 w-16 focus:shadow-none focus:border-green-400"
+        className="bg-transparent h-5 border-0 border-b-2 border-primary font-bold text-lg p-2 text-gray-700 w-16 focus:shadow-none focus:outline-none focus:border-zinc-700"
         placeholder="00"
         step={5}
         min={5}
