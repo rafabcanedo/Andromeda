@@ -15,7 +15,7 @@ export function Footer() {
 
             <Link
               className="text-black hover:text-indigo-900 font-pop"
-              href="/pomodoro"
+              href="/"
             >
               Pomodoro
             </Link>

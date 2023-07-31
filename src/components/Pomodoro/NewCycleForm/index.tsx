@@ -8,7 +8,7 @@ export function NewCyleForm() {
 
   return (
     <div className="w-full flex items-center justify-center gap-2 text-gray-400 text-lg font-bold flex-wrap">
-      <label htmlFor="task">Vou trabalhar em</label>
+      {/* <label htmlFor="task">Vou trabalhar em</label>
       <input
         id="task"
         list="task-suggestions"
@@ -21,13 +21,15 @@ export function NewCyleForm() {
       <datalist id="task-suggestions">
         <option value="Projeto 1" />
         <option value="Estudos" />
-      </datalist>
+      </datalist> */}
 
-      <label htmlFor="minutesAmount">durante</label>
+      <label htmlFor="minutesAmount">
+        Vou trabalhar em minha atividade durante
+      </label>
       <input
         type="number"
         id="minutesAmount"
-        className="bg-transparent h-5 border-0 border-b-2 border-primary font-bold text-lg p-2 text-gray-700 w-16 focus:shadow-none focus:outline-none focus:border-zinc-700"
+        className="bg-transparent h-5 border-0 border-b-2 border-primary font-bold text-lg p-2 text-teal-600 w-16 focus:shadow-none focus:outline-none focus:border-zinc-700"
         placeholder="00"
         step={5}
         min={5}

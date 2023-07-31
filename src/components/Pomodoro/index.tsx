@@ -43,37 +43,39 @@ export default function Pomodoro() {
   const isSubmitDisabled = !task
 
   return (
-    <div className="flex-1 flex flex-col bg-background items-center justify-center min-h-screen">
-      <form
-        onSubmit={handleSubmit(handleCreateNewCycle)}
-        action=""
-        className="flex flex-col items-center gap-14"
-      >
-        <FormProvider {...newCycleForm}>
-          <NewCyleForm />
-        </FormProvider>
-        <Countdown />
+    <div className="max-w-5xl h-[calc(100vh-25rem)] m-20 p-10 bg-pomodoro rounded-lg flex flex-col">
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <form
+          onSubmit={handleSubmit(handleCreateNewCycle)}
+          action=""
+          className="flex flex-col items-center gap-14"
+        >
+          <FormProvider {...newCycleForm}>
+            <NewCyleForm />
+          </FormProvider>
+          <Countdown />
 
-        {activeCycle ? (
-          <button
-            type="button"
-            onClick={interruptCurrentCycle}
-            className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-red-600 text-gray-200 hover:bg-red-700 disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            Interromper
-            <Pause size={25} />
-          </button>
-        ) : (
-          <button
-            type="submit"
-            disabled={isSubmitDisabled}
-            className="w-full border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-primary text-gray-200 hover:bg-[#413954] disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            Começar
-            <Play size={25} />
-          </button>
-        )}
-      </form>
+          {activeCycle ? (
+            <button
+              type="button"
+              onClick={interruptCurrentCycle}
+              className="w-1/2 border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-red-600 text-gray-200 hover:bg-red-700 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              Interromper
+              <Pause size={25} />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={isSubmitDisabled}
+              className="w-1/2 border-0 p-4 rounded-lg flex items-center justify-center gap-2 font-bold cursor-pointer bg-primary text-gray-200 hover:bg-[#413954] disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              Começar
+              <Play size={25} />
+            </button>
+          )}
+        </form>
+      </div>
     </div>
   )
 }
